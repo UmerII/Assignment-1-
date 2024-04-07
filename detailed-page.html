@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read-More-Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            /* position: absolute; */
+            height: 400px;
+            width: 600px;
+            margin-left: 200px;
+            margin-top: 100px;
+            border-radius: 50px;
+            
+        }
+        .card img{
+            height: 500px;
+            width: 100%;
+            margin: 5px;
+        }
+        h1{
+            text-align: center;
+        }
+        .btn:hover{
+    background-color: green;
+        }
+        .div-1{
+            /* border: 2px solid red; */
+            width: 400px;
+            height: auto;
+            /* margin-top: 140px; */
+            position: absolute;
+            right: 300px;
+            bottom: 140px;
+        }
+        .parent{
+            position: relative;
+        }
+        .title-{
+            font-size: 38px;
+            font-weight: 100;
+        }
+        h1{
+            margin-top: 10px;
+        }
+        .btn{
+            margin-top: 260px;
+            margin-left: 30px;
+            background-color: rgb(34, 134, 248);
+        }
+        .btn:hover{
+            background-color: rgb(251, 251, 251);
+            color: black;
+        }
+        .Category{
+            font-size: 22px;
+            font-weight: 200;
+        }
+        @media(max-width:1920px)
+        {
+           img{
+            width: 700px;
+            height: 400px;
+            margin-left: 10px;
+           }
+           .btn{
+            /* margin-right: 110px; */
+            margin-left: 70px;
+           }
+           .div-1{
+            right: 100px;
+           }
+        }
+        @media(max-width:1400px)
+        {
+            img{
+                width: 600px;
+                margin-left: 2px;
+                margin-right: 30px;
+            }
+            .div-1{
+                right: 0px;
+            }
+        }
+
+        @media(max-width:1200px)
+        {
+            img{
+                /* margin-right:0px; */
+                width: 500px;
+            }
+            .div-1{
+             right: 0px;
+            }
+            .btn{
+                margin-left: 10px;
+            }
+        }
+         @media(max-width:1024px)
+        {
+            img{
+                width: 300px;
+                height: 190px;
+                margin-right: 600px;
+            }
+            .div-1{
+                right: 160px;
+                bottom: 50px;
+            }
+            .btn{
+                margin-left: 540px;
+                
+                margin-top: 20px;
+                /* border: 2px solid red; */
+            }
+        }
+        @media(max-width:768px)
+        {
+            img{
+                width: 350px;
+                height: 250px;
+                margin-top: 50px;
+                margin-left: 600px;
+                /* margin-right: 400px; */
+            }
+            .div-1{
+                bottom: 0px;
+                right:550px;
+            }
+            .btn{
+                margin-left: 700px;
+                margin-right: 600px;
+                margin-top: 240px;
+            }
+        } 
+        @media(max-width:400px)
+        {
+            img{
+                width: 250px;
+                margin-left: 540px;
+            }
+            .div-1{
+                right:430px;
+                bottom: 0px;
+            }
+            .btn{
+                width: 100px;
+                margin-top: 250px;
+            }
+        }
+    </style>
+    <body>
+        <div class="container">
+        <div class="row">
+            <!-- <div class="col-lg-3 col-md-6 col-sm-12"> -->
+            <div id="product-details"></div>
+        <!-- </div> -->
+        </div>
+        </div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- <script src="index.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+
+</body>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve product ID from the URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    
+    // Fetch product details based on the product ID
+    fetch(`https://dummyjson.com/products/${productId}`)
+        .then(response => response.json())
+        .then(product => {
+            // Display product details on the page
+            const productDetails = document.getElementById('product-details');
+            productDetails.innerHTML = `
+                <div class="parent">
+                <h1>${product.title}</h1> 
+                <img src="${product.images[0]}" alt="${product.title}" width="200">
+                <div class="div-1">
+                <p class="title-">${product.title}</p>
+                <p class="Category">Category: ${product.category}</p>  
+                <p>Description: ${product.description}</p>
+                <p>Price: ${product.price}$</p> 
+                <p>Stock: ${product.stock}</p></div>
+               <a href="index.html"> <button class="btn btn-secondary">Buy Now</button></a>
+               </div>
+            `;
+        })
+        .catch(error => {
+            console.error('Error fetching product details:', error);
+        });
+});
+</script>
+</html>

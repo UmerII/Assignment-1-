@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<title>Title</title>
+</head>
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+     img{
+        height: 130px;
+        width: 243px;
+        padding: 3px;
+    } 
+
+
+    .card{
+        width: 300px;
+        height: 290px;
+        margin: 5px;
+        
+    }
+    h1{
+        text-align: center;
+    }
+    .btn{
+        background-color: #2286f8;
+    }
+    .button2{
+        background-color: aliceblue;
+        color:#2286f8;
+    }
+    .btn:hover{
+background-color:white;
+color: black;
+    }
+    @media (max-width:600px)
+    {
+        .row
+        {
+            margin-left: 100px;
+        }
+    }
+    @media (max-width:500px)
+    {
+        .row
+        {
+            margin-left: 90px;
+        }
+    }
+    @media (max-width:400px)
+    {
+        .container{
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: 10px
+        }
+    }
+</style>
+<body>
+<h1>Assignment # 1 </h1><br>
+<div class="container">
+<div class="row" id="tdata">
+
+</div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+<script>
+    $(document).ready(function(){
+        $.getJSON("https://dummyjson.com/products",function(data){
+            var js = data['products'];
+
+            $.each(js, function (key, value){
+                tdata=document.getElementById('tdata').innerHTML+=
+                `
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card" >
+                        <div class="card-body">
+                            
+                            <img src="${value.images[0]}" height="100px" width"100px">
+                <h5 class="card-title">${value.title}</h5>
+                
+                <p class="card-text">Price:${value.price}$</p>
+                
+                <a href="detailed-page.html?id=${value.id}" class="btn btn-secondary button1">Buy Now</a>
+                <a href="detailed-page.html?id=${value.id}" class="btn btn-secondary button2">Read more</a>
+            </div>
+                        </div>
+                    </div>
+                `
+            })
+        })
+    })
+</script>
+</html>
